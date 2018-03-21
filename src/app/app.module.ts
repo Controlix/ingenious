@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { PieChartModule } from './pie-chart/pie-chart.module';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -11,9 +12,11 @@ import { PieChartModule } from './pie-chart/pie-chart.module';
   ],
   imports: [
     BrowserModule,
-    PieChartModule
+    PieChartModule,
+    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

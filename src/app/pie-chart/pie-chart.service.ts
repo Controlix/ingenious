@@ -31,10 +31,6 @@ export class PieChartService {
     };
   }
 
-  private pieChartViewData(slice: PieChartSliceInfo) : any {
-    return null;
-  }
-
   getPieChartSliceInfo(): PieChartSliceInfo[] {
     return [
       new PieChartSliceInfo('Savings', 6000),

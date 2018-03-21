@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PieChartSliceInfo } from './pie-chart-slice-info';
+import { PieChartService } from './pie-chart.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -9,9 +10,12 @@ import { PieChartSliceInfo } from './pie-chart-slice-info';
 export class PieChartComponent implements OnInit {
 
   @Input() pieChartSlices: PieChartSliceInfo[];
+  pieChartData: any = null;
 
-  constructor() {}
+  constructor(private pieChartService: PieChartService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.pieChartData = this.pieChartService.getPieChartViewData(this.pieChartSlices);
+  }
 
 }
