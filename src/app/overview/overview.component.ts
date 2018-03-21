@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Car } from '../domain/car';
+import { Expense} from '../domain/expense';
 import { CarService} from '../services/carservice';
 
 @Component({
@@ -8,8 +8,8 @@ import { CarService} from '../services/carservice';
   providers: [CarService]
 })
 export class OverviewComponent implements OnInit{
-  incomes: Object;
-  expenses: Object;
+  incomes: any;
+  expenses: any;
   constructor(private carService: CarService) {
     this.expenses = {
       labels: ['Food','Rent','Leisure'],
@@ -57,7 +57,3 @@ export class OverviewComponent implements OnInit{
   }
 }
 
-export class PrimeCar implements Car {
-
-  constructor(public vin?, public year?, public brand?, public color?) {}
-}
