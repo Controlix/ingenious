@@ -10,12 +10,14 @@ import {DialogModule} from 'primeng/dialog';
 import {AppComponent} from './app.component';
 import {SliderModule} from 'primeng/slider';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import {PieChartModule} from './pie-chart/pie-chart.module';
 import {AppRoutingModule} from './app-routing.module';
+import {ChartModule} from "primeng/chart";
+import {PieChartComponent} from "./pie-chart/pie-chart.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +27,10 @@ import {AppRoutingModule} from './app-routing.module';
     SliderModule,
     HttpClientModule,
     InputTextModule,
+    ChartModule,
     DialogModule,
     ButtonModule,
-    PieChartModule,
+
     AppRoutingModule
   ],
   providers: [],
