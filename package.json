@@ -1,5 +1,5 @@
 {
-  "name": "primeng-quickstart-cli",
+  "name": "ingenious",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -25,7 +25,8 @@
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14",
     "primeng": "^5.2.0-rc.1",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "randomcolor": "^0.5.3"
   },
   "devDependencies": {
     "@angular/cli": "1.6.5",
