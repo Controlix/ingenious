@@ -9,6 +9,7 @@ import { TableModule }  from 'primeng/table';
 import { DialogModule }  from 'primeng/dialog';
 
 import { AppComponent } from './app.component';
+import {SliderModule} from "primeng/slider";
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { AppComponent } from './app.component';
         BrowserAnimationsModule,
         FormsModule,
         TableModule,
+        SliderModule,
         HttpClientModule,
         InputTextModule,
         DialogModule,

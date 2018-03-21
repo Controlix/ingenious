@@ -21,6 +21,7 @@ export class AppComponent implements OnInit{
     cars: Car[];
 
     cols: any[];
+    val : number = 23;
     
     constructor(private carService: CarService) { }
     
