@@ -10,13 +10,12 @@ export class PieChartService {
   getPieChartViewData(pieChartSlices: PieChartSliceInfo[]): any {
     const labels = [];
     const data = [];
-    const bgColors = [];
-    const hoverBgColors = [];
+    const bgColors = randomColor({count: pieChartSlices.length});
+    const hoverBgColors = randomColor({count: pieChartSlices.length});
+
     for (const slice of pieChartSlices) {
       labels.concat(slice.name);
       data.concat(slice.value);
-      bgColors.concat(randomColor());
-      hoverBgColors.concat(randomColor());
     }
 
     return {
