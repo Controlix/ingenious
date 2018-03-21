@@ -13,11 +13,13 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {ChartModule} from "primeng/chart";
 import {PieChartComponent} from "./pie-chart/pie-chart.component";
+import {OverviewComponent} from "./overview/overview.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    PieChartComponent
+    PieChartComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,
