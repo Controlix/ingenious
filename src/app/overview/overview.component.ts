@@ -15,14 +15,17 @@ import {IncomeExpenseBase} from '../domain/income-expense-base';
 export class OverviewComponent implements OnInit {
   incomes: any;
   expenses: any;
+  totalSavings: any;
 
   constructor(private budgetService: BudgetService, private pieChartService: PieChartService) {}
 
   ngOnInit() {
     this.budgetService.getMonthlyIncomes('bob')
-      .then(res => this.incomes = this.toPieChartViewData(res));
+      .subscribe(res => this.incomes = this.toPieChartViewData(res.data));
     this.budgetService.getMonthlyExpenses('bob')
-      .then(res => this.expenses = this.toPieChartViewData(res));
+      .subscribe(res => this.expenses = this.toPieChartViewData(res.data));
+    this.budgetService.getTotalsavings('bob')
+      .subscribe(res => this.totalSavings = this.toPieChartViewData(res.data));
   }
 
   private toPieChartViewData(items: IncomeExpenseBase[]): any {
@@ -42,6 +45,9 @@ export class OverviewComponent implements OnInit {
   handleIncomeChange(event, index) {
     this.incomes.datasets[0].data[index] = event.value;
     this.incomes = Object.assign({}, this.incomes);
+  }
+  handleCapitalChange(event, index) {
+
   }
 }
 
