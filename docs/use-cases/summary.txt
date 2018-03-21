@@ -1,2 +1,5 @@
 Our app is a channel through which a consumer can get a guidance
 on how to finance a future purchase.
+
+use the monthly saving as a criteria for suggest a loan to the user
+use the geographic situation to suggest for example a less loan
