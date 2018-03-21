@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
+import { PieChartModule } from './pie-chart/pie-chart.module';
 
 
 @NgModule({
@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    PieChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
