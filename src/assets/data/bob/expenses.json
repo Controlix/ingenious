@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "amount": 2500,
+      "name": "Villa",
+      "category": "mortgage"
+    },
+    {
+      "amount": 750,
+      "name": "Mercedes",
+      "category": "car"
+    },
+    {
+      "amount": 1000,
+      "name": "Food & drinks",
+      "category": "food"
+    }
+  ]
+}

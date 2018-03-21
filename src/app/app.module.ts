@@ -14,6 +14,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {ChartModule} from "primeng/chart";
 import {PieChartComponent} from "./pie-chart/pie-chart.component";
 import {OverviewComponent} from "./overview/overview.component";
+import {PieChartService} from './pie-chart/pie-chart.service';
+import {BudgetService} from './domain/budget-service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import {OverviewComponent} from "./overview/overview.component";
 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PieChartService, BudgetService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
