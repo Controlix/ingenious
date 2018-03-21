@@ -1,0 +1,50 @@
+As a customer I want to get advice on how to finance a purchase
+
+scenario:
+ I cannot afford it
+
+given:
+ I want to buy a Mercedes S-class that costs 100.000 euro in 10 months
+ I have a monthly income of 3000 euro
+ I my monthly expenses amount to 2000 euro
+ I have 5000 euro in my savings account
+
+when:
+ I ask for advice on how to finance this car
+
+then:
+ the advice is that I should not buy the car because I can not realistically afford it
+
+
+scenario:
+ I already have the money
+
+given:
+ I want to buy a Mercedes S-class that costs 100.000 euro in 10 months
+ I have a monthly income of 5000 euro
+ I my monthly expenses amount to 2000 euro
+ I have 70000 euro in my savings account
+
+when:
+ I ask for advice
+
+then:
+ the advice is that I can buy the car in 10 months since I will have saved enough
+
+
+scenario:
+ I can save and take a loan
+ 
+given:
+ I want to buy a Mercedes S-class that costs 100.000 euro in 10 months
+ I have a monthly income of 4000 euro
+ I my monthly expenses amount to 2000 euro
+ I have 600000 euro in my savings account
+
+when:
+ I ask for advice
+
+then:
+ the advice is that I can take a loan of 20000 euro
+ and use my savings
+

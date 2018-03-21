@@ -1,0 +1,2 @@
+Our app is a channel through which a consumer can get a guidance
+on how to finance a future purchase.
