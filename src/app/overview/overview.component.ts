@@ -5,6 +5,7 @@ import { CarService} from '../services/carservice';
 @Component({
   selector: 'overview',
   templateUrl: './overview.component.html',
+  styleUrls: ['./overview.component.css'],
   providers: [CarService]
 })
 export class OverviewComponent implements OnInit{
