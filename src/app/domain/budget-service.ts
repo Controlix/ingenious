@@ -9,15 +9,22 @@ export class BudgetService {
   constructor(private http: HttpClient) {
   }
 
-  getIncomes(user: string): Promise<Income[]> {
+  getMonthlyIncomes(user: string): Promise<Income[]> {
     return this.http.get<any>('assets/data/' + user + '/' + 'incomes.json')
       .toPromise()
       .then(res => <Income[]> res.data)
       .then(data => data);
   }
 
-  getExpenses(user: string): Promise<Expense[]> {
+  getMonthlyExpenses(user: string): Promise<Expense[]> {
     return this.http.get<any>('assets/data/' + user + '/' + 'expenses.json')
+      .toPromise()
+      .then(res => <Expense[]> res.data)
+      .then(data => data);
+  }
+
+  getTotalsavings(user: string): Promise<Expense[]> {
+    return this.http.get<any>('assets/data/' + user + '/' + 'savings.json')
       .toPromise()
       .then(res => <Expense[]> res.data)
       .then(data => data);

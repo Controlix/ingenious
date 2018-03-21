@@ -19,9 +19,9 @@ export class OverviewComponent implements OnInit {
   constructor(private budgetService: BudgetService, private pieChartService: PieChartService) {}
 
   ngOnInit() {
-    this.budgetService.getIncomes('bob')
+    this.budgetService.getMonthlyIncomes('bob')
       .then(res => this.incomes = this.toPieChartViewData(res));
-    this.budgetService.getExpenses('bob')
+    this.budgetService.getMonthlyExpenses('bob')
       .then(res => this.expenses = this.toPieChartViewData(res));
   }
 
