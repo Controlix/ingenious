@@ -6,12 +6,7 @@
       "category": "salary"
     },
     {
-      "amount": 50000,
-      "name": "Savings",
-      "category": "savings"
-    },
-    {
-      "amount": 5000,
+      "amount": 2000,
       "name": "Other revenues",
       "category": "other"
     }
