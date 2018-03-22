@@ -2,3 +2,8 @@
   padding-left: 20%;
   display: flex;
 }
+
+.center{
+  padding-left: 48%;
+  display: block;
+}

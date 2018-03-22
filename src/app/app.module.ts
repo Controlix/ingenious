@@ -6,7 +6,6 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
-
 import {AppComponent} from './app.component';
 import {SliderModule} from 'primeng/slider';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';

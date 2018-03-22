@@ -5,6 +5,7 @@ import {BudgetService} from '../domain/budget-service';
 import {PieChartService} from '../pie-chart/pie-chart.service';
 import {PieChartSliceInfo} from '../pie-chart/pie-chart-slice-info';
 import {IncomeExpenseBase} from '../domain/income-expense-base';
+import * as moment from 'moment';
 import {SimulationService} from '../services/simulation.service';
 
 @Component({
@@ -17,6 +18,8 @@ export class OverviewComponent implements OnInit {
   incomes: any;
   expenses: any;
   totalSavings: any;
+  monthlySaving: number;
+  monthlyAmountToGoal: number;
 
   constructor(
     private budgetService: BudgetService,
@@ -53,7 +56,31 @@ export class OverviewComponent implements OnInit {
     this.incomes = Object.assign({}, this.incomes);
   }
   handleCapitalChange(event, index) {
-
+    this.totalSavings.datasets[0].data[index] = event.value;
+    this.totalSavings = Object.assign({}, this.incomes);
+  }
+  simulate() {
+    let goalAmount = 50000;
+    let targetDate = moment('30/04/2020', 'DD/MM/YYYY');
+    let nbOfMonths = targetDate.diff(new Date(), 'months');
+    let totalIncome = 0;
+    let totalExpenses = 0;
+    let savingsSum = 0;
+    totalExpenses = this.expenses.datasets[0].data.reduce((previous, current)=> previous + current);
+    totalIncome = this.incomes.datasets[0].data.reduce((previous, current)=> previous + current);
+    savingsSum = this.totalSavings.datasets[0].data.reduce((previous, current)=> previous + current);
+    let totalPotentialSaving = ((totalIncome - totalExpenses) * nbOfMonths) + savingsSum;
+    let possibleMonthsNbToGoal = (goalAmount - totalPotentialSaving)/(totalIncome - totalExpenses)
+    if(possibleMonthsNbToGoal < nbOfMonths)
+    {
+      console.log("To achieve your goal you need ", possibleMonthsNbToGoal + " months")
+    }
+    if(possibleMonthsNbToGoal)
+    {
+      console.log("Your goal is achievable, don\'t forget to take insurance to be safe ");
+    }
+    console.log(totalPotentialSaving);
+    console.log(possibleMonthsNbToGoal);
   }
 }
 
