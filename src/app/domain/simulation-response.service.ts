@@ -37,6 +37,7 @@ export class SimulationResponseService {
         content : "Don't forget to take insurance to be covered in case of unexpected issues. ING has a set of products that can answer to your different needs and situations. \n If you still have more saving account you don't need you can open an investment account. With ING investment pays from 3% to 10%  depending gon the risk profile "
       }
     }
+    return answers;
   }
 
 }

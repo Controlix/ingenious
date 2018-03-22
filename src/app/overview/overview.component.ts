@@ -6,6 +6,7 @@ import {PieChartSliceInfo} from '../pie-chart/pie-chart-slice-info';
 import {IncomeExpenseBase} from '../domain/income-expense-base';
 import * as moment from 'moment';
 import {SimulationResponseService} from '../domain/simulation-response.service';
+import {Goal} from "../domain/goal";
 
 @Component({
   selector: 'overview',
@@ -19,6 +20,9 @@ export class OverviewComponent implements OnInit {
   totalSavings: any;
   monthlySaving: number;
   monthlyAmountToGoal: number;
+  goal : Goal;
+  responseTitle : string;
+  responseContent : string;
 
   constructor(
     private budgetService: BudgetService,
@@ -33,7 +37,11 @@ export class OverviewComponent implements OnInit {
       .subscribe(res => this.expenses = this.toPieChartViewData(res.data));
     this.budgetService.getTotalsavings('bob')
       .subscribe(res => this.totalSavings = this.toPieChartViewData(res.data));
-    this.simulationResponseService.goalDefined$.subscribe(goal => console.log(goal));
+    this.simulationResponseService.goalDefined$.subscribe(goal =>
+    {
+      this.goal = goal;
+      this.simulate();
+    });
   }
 
   private toPieChartViewData(items: IncomeExpenseBase[]): any {
@@ -59,8 +67,7 @@ export class OverviewComponent implements OnInit {
     this.totalSavings = Object.assign({}, this.incomes);
   }
   simulate() {
-    let goalAmount = 50000;
-    let targetDate = moment('30/04/2020', 'DD/MM/YYYY');
+    let targetDate = moment(this.goal.target, 'DD/MM/YYYY');
     let nbOfMonths = targetDate.diff(new Date(), 'months');
     let totalIncome = 0;
     let totalExpenses = 0;
@@ -69,14 +76,21 @@ export class OverviewComponent implements OnInit {
     totalIncome = this.incomes.datasets[0].data.reduce((previous, current)=> previous + current);
     savingsSum = this.totalSavings.datasets[0].data.reduce((previous, current)=> previous + current);
     let totalPotentialSaving = ((totalIncome - totalExpenses) * nbOfMonths) + savingsSum;
-    let possibleMonthsNbToGoal = (goalAmount - totalPotentialSaving)/(totalIncome - totalExpenses)
-    if(possibleMonthsNbToGoal < nbOfMonths)
+    let possibleMonthsNbToGoal = (this.goal.amount - totalPotentialSaving)/(totalIncome - totalExpenses)
+    if(possibleMonthsNbToGoal < nbOfMonths || possibleMonthsNbToGoal < 0)
     {
-      console.log("To achieve your goal you need ", possibleMonthsNbToGoal + " months")
+      this.responseTitle = this.simulationResponseService.getSimulationResponse().positive.title;
+      this.responseContent = this.simulationResponseService.getSimulationResponse().positive.content;
     }
-    if(possibleMonthsNbToGoal)
+    if(possibleMonthsNbToGoal > nbOfMonths && possibleMonthsNbToGoal - nbOfMonths > 60)
     {
-      console.log("Your goal is achievable, don\'t forget to take insurance to be safe ");
+      this.responseTitle = this.simulationResponseService.getSimulationResponse().negative.impossible.title;
+      this.responseContent = this.simulationResponseService.getSimulationResponse().negative.impossible.content;
+    }
+    if(possibleMonthsNbToGoal > nbOfMonths && possibleMonthsNbToGoal - nbOfMonths <= 60)
+    {
+      this.responseTitle = this.simulationResponseService.getSimulationResponse().negative.shortPeriod.title;
+      this.responseContent = this.simulationResponseService.getSimulationResponse().negative.shortPeriod.content;
     }
     console.log(totalPotentialSaving);
     console.log(possibleMonthsNbToGoal);

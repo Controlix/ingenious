@@ -12,7 +12,6 @@
 </div>
 <div class="ui-g-12 ui-lg-6">
   <div  *ngIf="incomes" class="card">
-    <h1 class="centerText">Incomes </h1>
     <div *ngFor="let label of incomes.labels; let i = index" class="slider">
       {{label}} : <p-slider [(ngModel)]="incomes.datasets[0].data[i]" [style]="{'width':'200px'}" [max]="10000" (onSlideEnd)="handleIncomeChange($event, i)"></p-slider>{{incomes.datasets[0].data[i]}}
     </div>
@@ -20,7 +19,6 @@
 </div>
 <div class="ui-g-12 ui-lg-6">
   <div  *ngIf="expenses" class="card">
-    <h1 class="centerText">Expenses </h1>
     <div *ngFor="let label of expenses.labels; let i = index" class="slider">
       {{label}} : <p-slider [(ngModel)]="expenses.datasets[0].data[i]" [min]="0" [max]="10000" [style]="{'width':'200px'}" (onSlideEnd)="handleExpenseChange($event, i)"></p-slider> {{expenses.datasets[0].data[i]}}
    </div>
@@ -36,7 +34,10 @@
 </div>
 <div class="ui-g-12 ui-lg-6">
 </div>
-<div class="ui-g-12 ui-lg-12 center">
-  <button pButton type="button" (click)="simulate()" label="Simulate"></button>
+<div *ngIf="responseTitle && responseContent" class="ui-g-12 ui-lg-12">
+  <p-fieldset [toggleable]="true">
+    <p-header>{{responseTitle}}</p-header>
+    {{responseContent}}
+  </p-fieldset>
 </div>
 

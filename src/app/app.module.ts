@@ -22,6 +22,7 @@ import {PieChartService} from './pie-chart/pie-chart.service';
 import {BudgetService} from './domain/budget-service';
 import {GoalService} from './services/goal.service';
 import {CalendarModule, DropdownModule} from 'primeng/primeng';
+import {FieldsetModule} from 'primeng/fieldset';
 import {SimulationResponseService} from "./domain/simulation-response.service";
 
 @NgModule({
@@ -37,6 +38,7 @@ import {SimulationResponseService} from "./domain/simulation-response.service";
     BrowserAnimationsModule,
     FormsModule,
     TableModule,
+    FieldsetModule,
     SliderModule,
     HttpClientModule,
     InputTextModule,
