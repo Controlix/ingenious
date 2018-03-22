@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   items: MenuItem[] = [];
   currentUser: User;
-  display: boolean = false;
+  displayDialog = false;
 
   constructor(private userService: UserService) {}
 
@@ -36,6 +36,8 @@ export class NavbarComponent implements OnInit {
   }
 
   showCreateGoalDialog() {
-    this.display = true;
+    this.displayDialog = true;
   }
+
+
 }

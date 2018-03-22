@@ -5,6 +5,7 @@ import {BudgetService} from '../domain/budget-service';
 import {PieChartService} from '../pie-chart/pie-chart.service';
 import {PieChartSliceInfo} from '../pie-chart/pie-chart-slice-info';
 import {IncomeExpenseBase} from '../domain/income-expense-base';
+import {SimulationService} from '../services/simulation.service';
 
 @Component({
   selector: 'overview',
@@ -17,7 +18,11 @@ export class OverviewComponent implements OnInit {
   expenses: any;
   totalSavings: any;
 
-  constructor(private budgetService: BudgetService, private pieChartService: PieChartService) {}
+  constructor(
+    private budgetService: BudgetService,
+    private simulationService: SimulationService,
+    private pieChartService: PieChartService
+  ) {}
 
   ngOnInit() {
     this.budgetService.getMonthlyIncomes('bob')
@@ -26,6 +31,7 @@ export class OverviewComponent implements OnInit {
       .subscribe(res => this.expenses = this.toPieChartViewData(res.data));
     this.budgetService.getTotalsavings('bob')
       .subscribe(res => this.totalSavings = this.toPieChartViewData(res.data));
+    this.simulationService.goalDefined$.subscribe(goal => console.log(goal));
   }
 
   private toPieChartViewData(items: IncomeExpenseBase[]): any {
