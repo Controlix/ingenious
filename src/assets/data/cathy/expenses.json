@@ -1,47 +1,37 @@
 {
   "data": [
     {
-      "amount": 1503,
-      "name": "Mortgage",
+      "amount": 241,
+      "name": "Maintenance",
       "category": "housing"
     },
     {
-      "amount": 87,
-      "name": "Dog",
-      "category": "pets"
-    },
-    {
-      "amount": 267,
+      "amount": 203,
       "name": "Water, gas & electricity",
       "category": "energy"
     },
     {
-      "amount": 785,
-      "name": "Mercedes",
+      "amount": 667,
+      "name": "VW + Porsche",
       "category": "car"
     },
     {
-      "amount": 187,
+      "amount": 43,
       "name": "Internet etc",
       "category": "telecom"
     },
     {
-      "amount": 87,
+      "amount": 332,
       "name": "Doctor etc",
       "category": "health"
     },
     {
-      "amount": 102,
-      "name": "Sports",
-      "category": "leasure"
-    },
-    {
-      "amount": 233,
+      "amount": 120,
       "name": "Other",
       "category": "other"
     },
     {
-      "amount": 984,
+      "amount": 523,
       "name": "Food & drinks",
       "category": "groceries"
     }

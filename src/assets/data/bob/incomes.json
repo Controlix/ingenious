@@ -1,12 +1,12 @@
 {
   "data": [
     {
-      "amount": 5000,
+      "amount": 5287,
       "name": "Salary",
       "category": "salary"
     },
     {
-      "amount": 2000,
+      "amount": 2249,
       "name": "Other revenues",
       "category": "other"
     }
