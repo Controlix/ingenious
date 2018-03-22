@@ -1,14 +1,22 @@
 import 'rxjs/add/observable/of';
-import { Observable } from 'rxjs/Observable';
-import { User } from '../domain/user';
-import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class UserService {
 
-  constructor() {}
+  private user = 'bob';
 
-  getCurrentUser(): Observable<User> {
-    return Observable.of(new User('jane.doe@example.com', 'Jane Doe', 'janedoe'));
+  constructor(private http: HttpClient) {
   }
+
+  setCurrentUser(user: string) {
+    this.user = user;
+  }
+
+  getCurrentUser(): Observable<any> {
+    return this.http.get('assets/data/' + this.user + '/' + 'profile.json');
+  }
+
 }

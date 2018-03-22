@@ -1,0 +1,7 @@
+{
+  "name": "bob",
+  "age": 42,
+  "dependentPersons": 2,
+  "fullName": "Robert S. Martin",
+  "email": "uncle.bob@gmail.com"
+}
