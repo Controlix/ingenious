@@ -20,11 +20,6 @@ export class SimulationService {
   }
 
   simulate(goal: Goal, incomes: Incomes, expenses: Expenses, savings: number): SimulationResult[] {
-    console.log('goal', goal);
-    console.log('incomes', incomes);
-    console.log('expenses', expenses);
-    console.log('savings', savings);
-
     const targetDate = moment(goal.target, 'DD/MM/YYYY');
     const nbOfMonths = targetDate.diff(new Date(), 'months');
 

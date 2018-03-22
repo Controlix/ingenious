@@ -9,17 +9,17 @@ export class UserService {
 
   private usersById: { [key: number]: string } = {1: 'bob', 2: 'cathy', 3: 'mike'};
 
-  private user = 'bob';
+  private user = this.usersById[1];
 
   constructor(private http: HttpClient) {
   }
 
   setCurrentUser(userId: number) {
-    this.user = this.usersById[userId];
+    // this.user = this.usersById[userId];
   }
 
   getCurrentUser(): Observable<any> {
-    return this.http.get('assets/data/bob/profile.json');
+    return this.http.get('assets/data/' + this.user + '/profile.json');
   }
 
 }
