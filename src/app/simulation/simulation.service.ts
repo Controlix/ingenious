@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Goal} from '../domain/goal';
 import {Subject} from 'rxjs/Subject';
-import {SimulationResult} from './simulation';
+import {SimulationResult, SimulationResults} from './simulation';
 import * as moment from 'moment';
 import {Income} from '../domain/income';
 import {Expense} from '../domain/expense';
@@ -19,7 +19,7 @@ export class SimulationService {
     this.goalDefined.next(goal);
   }
 
-  simulate(goal: Goal, incomes: number[], expenses: number[], savings: number[]): SimulationResult[] {
+  simulate(goal: Goal, incomes: number[], expenses: number[], savings: number[]): SimulationResults {
     const targetDate = moment(goal.target, 'DD/MM/YYYY');
     const nbOfMonths = targetDate.diff(new Date(), 'months');
 
@@ -55,7 +55,7 @@ export class SimulationService {
         "month(s), or take a loan.\\nING can provide you very competitive rates compared to the other bank in addition to the quality of its services and advices"));
     }
 
-    return res;
+    return new SimulationResults(res, totalIncome, totalExpenses, savingsSum);
   }
 }
 

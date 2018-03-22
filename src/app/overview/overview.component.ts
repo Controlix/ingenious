@@ -5,7 +5,7 @@ import {PieChartSliceInfo} from '../pie-chart/pie-chart-slice-info';
 import {IncomeExpenseBase} from '../domain/income-expense-base';
 import {SimulationService} from '../simulation/simulation.service';
 import {Goal} from '../domain/goal';
-import {SimulationResult} from '../simulation/simulation';
+import {SimulationResults} from '../simulation/simulation';
 
 @Component({
   selector: 'overview',
@@ -22,7 +22,7 @@ export class OverviewComponent implements OnInit {
   goal: Goal;
   responseTitle: string;
   responseContent: string;
-  simulations: SimulationResult[];
+  simulations: SimulationResults;
 
   constructor(private budgetService: BudgetService,
               private simulationResponseService: SimulationService,
@@ -69,6 +69,8 @@ export class OverviewComponent implements OnInit {
   simulate() {
     this.simulations = this.simulationResponseService.simulate(this.goal, this.incomes.datasets[0].data, this.expenses.datasets[0].data,
       this.totalSavings === undefined ? [] : this.totalSavings.datasets[0].data);
+
+    console.log('simulations', this.simulations);
   }
 }
 
