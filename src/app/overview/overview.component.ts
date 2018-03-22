@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Expense} from '../domain/expense';
 import {BudgetService} from '../domain/budget-service';
 import {PieChartService} from '../pie-chart/pie-chart.service';
 import {PieChartSliceInfo} from '../pie-chart/pie-chart-slice-info';
 import {IncomeExpenseBase} from '../domain/income-expense-base';
-import * as moment from 'moment';
-import {SimulationResponseService} from '../domain/simulation-response.service';
-import {Goal} from "../domain/goal";
+import {SimulationService} from '../simulation/simulation.service';
+import {Goal} from '../domain/goal';
+import {SimulationResult} from '../simulation/simulation';
 
 @Component({
   selector: 'overview',
@@ -20,15 +19,15 @@ export class OverviewComponent implements OnInit {
   totalSavings: any;
   monthlySaving: number;
   monthlyAmountToGoal: number;
-  goal : Goal;
-  responseTitle : string;
-  responseContent : string;
+  goal: Goal;
+  responseTitle: string;
+  responseContent: string;
+  simulations: SimulationResult[];
 
-  constructor(
-    private budgetService: BudgetService,
-    private simulationResponseService: SimulationResponseService,
-    private pieChartService: PieChartService
-  ) {}
+  constructor(private budgetService: BudgetService,
+              private simulationResponseService: SimulationService,
+              private pieChartService: PieChartService) {
+  }
 
   ngOnInit() {
     this.budgetService.getMonthlyIncomes('bob')
@@ -37,8 +36,7 @@ export class OverviewComponent implements OnInit {
       .subscribe(res => this.expenses = this.toPieChartViewData(res.data));
     this.budgetService.getTotalsavings('bob')
       .subscribe(res => this.totalSavings = this.toPieChartViewData(res.data));
-    this.simulationResponseService.goalDefined$.subscribe(goal =>
-    {
+    this.simulationResponseService.goalDefined$.subscribe(goal => {
       this.goal = goal;
       this.simulate();
     });
@@ -62,38 +60,15 @@ export class OverviewComponent implements OnInit {
     this.incomes.datasets[0].data[index] = event.value;
     this.incomes = Object.assign({}, this.incomes);
   }
+
   handleCapitalChange(event, index) {
     this.totalSavings.datasets[0].data[index] = event.value;
     this.totalSavings = Object.assign({}, this.incomes);
   }
+
   simulate() {
-    let targetDate = moment(this.goal.target, 'DD/MM/YYYY');
-    let nbOfMonths = targetDate.diff(new Date(), 'months');
-    let totalIncome = 0;
-    let totalExpenses = 0;
-    let savingsSum = 0;
-    totalExpenses = this.expenses.datasets[0].data.reduce((previous, current)=> previous + current);
-    totalIncome = this.incomes.datasets[0].data.reduce((previous, current)=> previous + current);
-    savingsSum = this.totalSavings.datasets[0].data.reduce((previous, current)=> previous + current);
-    let totalPotentialSaving = ((totalIncome - totalExpenses) * nbOfMonths) + savingsSum;
-    let possibleMonthsNbToGoal = (this.goal.amount - totalPotentialSaving)/(totalIncome - totalExpenses)
-    if(possibleMonthsNbToGoal < nbOfMonths || possibleMonthsNbToGoal < 0)
-    {
-      this.responseTitle = this.simulationResponseService.getSimulationResponse(0).positive.title;
-      this.responseContent = this.simulationResponseService.getSimulationResponse(0).positive.content;
-    }
-    if(possibleMonthsNbToGoal > nbOfMonths && possibleMonthsNbToGoal - nbOfMonths > 60)
-    {
-      this.responseTitle = this.simulationResponseService.getSimulationResponse(0).negative.impossible.title;
-      this.responseContent = this.simulationResponseService.getSimulationResponse(0).negative.impossible.content;
-    }
-    if(possibleMonthsNbToGoal > nbOfMonths && possibleMonthsNbToGoal - nbOfMonths <= 60)
-    {
-      this.responseTitle = this.simulationResponseService.getSimulationResponse(Number.parseInt(possibleMonthsNbToGoal - nbOfMonths)).negative.shortPeriod.extendPeriod.title;
-      this.responseContent = this.simulationResponseService.getSimulationResponse(Number.parseInt(possibleMonthsNbToGoal - nbOfMonths)).negative.shortPeriod.extendPeriod.content;
-    }
-    console.log(totalPotentialSaving);
-    console.log(possibleMonthsNbToGoal);
+    this.simulations = this.simulationResponseService.simulate(this.goal, this.incomes.datasets[0].data, this.expenses.datasets[0].data,
+      this.totalSavings === undefined ? [] : this.totalSavings.datasets[0].data);
   }
 }
 
