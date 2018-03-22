@@ -18,6 +18,10 @@ export class UserService {
   }
 
   getCurrentUser(): Observable<any> {
+    if (this.user == null) {
+      return Observable.of(null);
+    }
+
     return this.http.get('assets/data/' + this.user + '/' + 'profile.json');
   }
 
