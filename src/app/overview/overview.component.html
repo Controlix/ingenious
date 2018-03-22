@@ -22,14 +22,12 @@
   <div *ngIf="incomes">{{incomes.total}}</div>
   <div class="ui-g-12 ui-lg-12 capital-container">
     <div *ngIf="totalSavingsPieChart" class="card">
-      <div *ngIf="totalSavingsPieChart" class="card">
-        <h1>Capital</h1>
-        <div *ngFor="let label of totalSavingsPieChart.labels; let i = index" class="slider">
-          <strong>{{label}}</strong>: {{totalSavingsPieChart.datasets[0].data[i]}}
-          <p-slider [(ngModel)]="totalSavingsPieChart.datasets[0].data[i]" [min]="0" [max]="10000"
-                    [style]="{'width':'200px'}"
-                    (onSlideEnd)="handleCapitalChange($event, i)"></p-slider>
-        </div>
+      <h1>Capital</h1>
+      <div *ngFor="let label of totalSavingsPieChart.labels; let i = index" class="slider">
+        <strong>{{label}}</strong>: {{totalSavingsPieChart.datasets[0].data[i]}}
+        <p-slider [(ngModel)]="totalSavingsPieChart.datasets[0].data[i]" [min]="0" [max]="10000"
+                  [style]="{'width':'200px'}"
+                  (onSlideEnd)="handleCapitalChange($event, i)"></p-slider>
       </div>
     </div>
   </div>
