@@ -5,9 +5,9 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CarService {
-    
+
     constructor(private http: HttpClient) {}
-    
+
     getCarsSmall() {
         return this.http.get<any>('assets/data/cars-small.json')
             .toPromise()

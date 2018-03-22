@@ -11,15 +11,22 @@ import {AppComponent} from './app.component';
 import {SliderModule} from 'primeng/slider';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
-import {ChartModule} from "primeng/chart";
-import {PieChartComponent} from "./pie-chart/pie-chart.component";
-import {OverviewComponent} from "./overview/overview.component";
+import { GoalCreateDialogComponent } from './goal-create-dialog/goal-create-dialog.component';
+import {ChartModule} from 'primeng/chart';
+import {PieChartComponent} from './pie-chart/pie-chart.component';
+import {OverviewComponent} from './overview/overview.component';
+import {ProfileModule} from './profile/profile.module';
+import {NavbarComponent} from './shared/layout/navbar/navbar.component';
+import {UserService} from './services/user.service';
+import {MenubarModule} from 'primeng/menubar';
 
 @NgModule({
   declarations: [
     AppComponent,
     PieChartComponent,
-    OverviewComponent
+    GoalCreateDialogComponent,
+    OverviewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -32,10 +39,12 @@ import {OverviewComponent} from "./overview/overview.component";
     ChartModule,
     DialogModule,
     ButtonModule,
-
+    ProfileModule,
+    MenubarModule,
+    ProfileModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
