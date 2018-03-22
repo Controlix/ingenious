@@ -79,18 +79,18 @@ export class OverviewComponent implements OnInit {
     let possibleMonthsNbToGoal = (this.goal.amount - totalPotentialSaving)/(totalIncome - totalExpenses)
     if(possibleMonthsNbToGoal < nbOfMonths || possibleMonthsNbToGoal < 0)
     {
-      this.responseTitle = this.simulationResponseService.getSimulationResponse().positive.title;
-      this.responseContent = this.simulationResponseService.getSimulationResponse().positive.content;
+      this.responseTitle = this.simulationResponseService.getSimulationResponse(0).positive.title;
+      this.responseContent = this.simulationResponseService.getSimulationResponse(0).positive.content;
     }
     if(possibleMonthsNbToGoal > nbOfMonths && possibleMonthsNbToGoal - nbOfMonths > 60)
     {
-      this.responseTitle = this.simulationResponseService.getSimulationResponse().negative.impossible.title;
-      this.responseContent = this.simulationResponseService.getSimulationResponse().negative.impossible.content;
+      this.responseTitle = this.simulationResponseService.getSimulationResponse(0).negative.impossible.title;
+      this.responseContent = this.simulationResponseService.getSimulationResponse(0).negative.impossible.content;
     }
     if(possibleMonthsNbToGoal > nbOfMonths && possibleMonthsNbToGoal - nbOfMonths <= 60)
     {
-      this.responseTitle = this.simulationResponseService.getSimulationResponse().negative.shortPeriod.title;
-      this.responseContent = this.simulationResponseService.getSimulationResponse().negative.shortPeriod.content;
+      this.responseTitle = this.simulationResponseService.getSimulationResponse(Number.parseInt(possibleMonthsNbToGoal - nbOfMonths)).negative.shortPeriod.extendPeriod.title;
+      this.responseContent = this.simulationResponseService.getSimulationResponse(Number.parseInt(possibleMonthsNbToGoal - nbOfMonths)).negative.shortPeriod.extendPeriod.content;
     }
     console.log(totalPotentialSaving);
     console.log(possibleMonthsNbToGoal);

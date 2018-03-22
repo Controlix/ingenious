@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Goal} from '../domain/goal';
 import {GoalCategory} from '../domain/goal-category';
-import {SimulationResponseService} from "../domain/simulation-response.service";
+import {SimulationResponseService} from '../domain/simulation-response.service';
 
 @Component({
   selector: 'app-goal-create-dialog',
@@ -11,6 +11,8 @@ import {SimulationResponseService} from "../domain/simulation-response.service";
   ]
 })
 export class GoalCreateDialogComponent implements OnInit {
+
+  @Output() onCloseDialog: EventEmitter<any> = new EventEmitter();
 
   goal: Goal = new Goal();
 
@@ -24,14 +26,18 @@ export class GoalCreateDialogComponent implements OnInit {
     this.categories = [
       {label: 'Car', value: GoalCategory.CAR},
       {label: 'House', value: GoalCategory.HOUSE},
-      {label: 'Trip', value: GoalCategory.TRIP}
+      {label: 'Travel', value: GoalCategory.TRAVEL}
     ]
   }
 
   onSubmit() {
     this.display = false;
+    this.onCloseDialog.emit();
     this.simulationResponseService.simulateGoal(this.goal);
   }
 
-
+  close() {
+    this.display = false;
+    this.onCloseDialog.emit();
+  }
 }

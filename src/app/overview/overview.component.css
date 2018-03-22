@@ -1,9 +1,8 @@
 .slider {
-  padding-left: 20%;
-  display: flex;
+  margin-bottom: 10px;
 }
 
-.center{
-  padding-left: 48%;
-  display: block;
+.capital-container {
+  margin-bottom: 20px;
+  padding: 0;
 }

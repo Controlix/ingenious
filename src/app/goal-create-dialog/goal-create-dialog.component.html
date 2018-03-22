@@ -1,11 +1,11 @@
-<form (ngSubmit)="onSubmit()" style="padding: 10px" novalidate>
+<p-dialog header="Create Goal" modal="modal" [responsive]="true" [(visible)]="display">
 
-  <p-dialog header="Create Goal" modal="modal" [responsive]="true" [(visible)]="display">
+  <form (ngSubmit)="onSubmit()" style="padding: 10px" novalidate>
 
-    <span class="ui-float-label">
-      <input id="alias-input" type="text" size="50" [(ngModel)]="goal.alias" name="alias" pInputText>
-      <label for="alias-input">Alias</label>
-    </span>
+      <span class="ui-float-label">
+        <input id="alias-input" type="text" size="50" [(ngModel)]="goal.alias" name="alias" pInputText>
+        <label for="alias-input">Alias</label>
+      </span>
 
     <div class="spacer"></div>
 
@@ -34,10 +34,10 @@
     <div class="spacer"></div>
 
     <p-footer>
-      <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancel"></button>
+      <button type="button" pButton icon="fa-close" (click)="close()" label="Cancel"></button>
       <button type="submit" pButton icon="fa-check" label="Simulate"></button>
     </p-footer>
 
-  </p-dialog>
+  </form>
 
-</form>
+</p-dialog>
