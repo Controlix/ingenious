@@ -1,0 +1,41 @@
+<div class="ui-g" style="margin-top: 100px;">
+
+  <div class="ui-g-12 ui-md-4 ui-md-offset-4">
+
+    <p-card [style]="{ width: '400px', padding: '10px' }" styleClass="ui-card-shadow">
+
+      <form (ngSubmit)="onSubmit()" style="padding: 10px" novalidate>
+
+        <p-header>
+          <img src="Card" src="https://upload.wikimedia.org/wikipedia/commons/4/49/ING_Group_N.V._Logo.svg" width="90%">
+        </p-header>
+
+        <div style="margin-top: 25px;">
+
+        <span class="ui-float-label">
+          <input id="ing-id-input" type="text" size="35" [(ngModel)]="ingId" name=ing-id pInputText>
+          <label for="ing-id-input">ING ID</label>
+        </span>
+
+          <div class="spacer"></div>
+
+          <div class="ui-float-label" >
+            <input id="card-id-input" type="text" size="35" name="card-id" pInputText>
+            <label for="card-id-input">Card ID</label>
+          </div>
+
+          <div class="spacer"></div>
+
+          <img src="Card" src="assets/identification-ing.png" width="90%" style="margin-bottom: 15px;">
+
+        </div>
+        <p-footer>
+          <button pButton type="button" label="Sign in" icon="fa-sign-in"></button>
+        </p-footer>
+
+      </form>
+
+    </p-card>
+
+  </div>
+</div>
