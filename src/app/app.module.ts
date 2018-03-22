@@ -19,6 +19,8 @@ import {ProfileModule} from './profile/profile.module';
 import {NavbarComponent} from './shared/layout/navbar/navbar.component';
 import {UserService} from './services/user.service';
 import {MenubarModule} from 'primeng/menubar';
+import {PieChartService} from './pie-chart/pie-chart.service';
+import {BudgetService} from './domain/budget-service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,7 @@ import {MenubarModule} from 'primeng/menubar';
     ProfileModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService, PieChartService, BudgetService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

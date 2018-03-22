@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "amount": 1206,
+      "name": "Pension",
+      "category": "pension"
+    },
+    {
+      "amount": 198,
+      "name": "Other",
+      "category": "other"
+    }
+  ]
+}

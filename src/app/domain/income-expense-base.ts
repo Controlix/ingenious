@@ -6,14 +6,14 @@ export abstract class IncomeExpenseBase {
 
   name: string;
   amount: number;
-  category: string[];
+  category: string;
 
   constructor(name?: string,
               amount?: number,
-              category?: string[]) {
+              category?: string) {
     this.name = name || '';
     this.amount = amount  === undefined ? 1 : amount;
-    this.category = category || [];
+    this.category = category || '';
   }
 }
 

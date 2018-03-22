@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "amount": 241,
+      "name": "Maintenance",
+      "category": "housing"
+    },
+    {
+      "amount": 203,
+      "name": "Water, gas & electricity",
+      "category": "energy"
+    },
+    {
+      "amount": 667,
+      "name": "VW + Porsche",
+      "category": "car"
+    },
+    {
+      "amount": 43,
+      "name": "Internet etc",
+      "category": "telecom"
+    },
+    {
+      "amount": 332,
+      "name": "Doctor etc",
+      "category": "health"
+    },
+    {
+      "amount": 120,
+      "name": "Other",
+      "category": "other"
+    },
+    {
+      "amount": 523,
+      "name": "Food & drinks",
+      "category": "groceries"
+    }
+  ]
+}
