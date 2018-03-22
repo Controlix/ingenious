@@ -17,6 +17,14 @@
       <strong>{{label}}</strong>: {{incomes.datasets[0].data[i]}} <p-slider [(ngModel)]="incomes.datasets[0].data[i]" [style]="{'width':'200px'}" [max]="10000" (onSlideEnd)="handleIncomeChange($event, i)"></p-slider>
     </div>
   </div>
+  <div class="ui-g-12 ui-lg-12 capital-container">
+    <div  *ngIf="totalSavings" class="card">
+      <h1>Capital</h1>
+      <div *ngFor="let label of totalSavings.labels; let i = index" class="slider">
+        <strong>{{label}}</strong>: {{totalSavings.datasets[0].data[i]}} <p-slider [(ngModel)]="totalSavings.datasets[0].data[i]" [min]="0" [max]="10000" [style]="{'width':'200px'}" (onSlideEnd)="handleCapitalChange($event, i)"></p-slider>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="ui-g-12 ui-lg-2"></div>
 <div class="ui-g-12 ui-lg-4">
@@ -25,14 +33,6 @@
       <strong>{{label}}</strong>: {{expenses.datasets[0].data[i]}} <p-slider [(ngModel)]="expenses.datasets[0].data[i]" [min]="0" [max]="10000" [style]="{'width':'200px'}" (onSlideEnd)="handleExpenseChange($event, i)"></p-slider>
    </div>
  </div>
-</div>
-<div class="ui-g-12 ui-lg-6">
-  <div  *ngIf="totalSavings" class="card">
-    <h1 class="centerText">Capital </h1>
-    <div *ngFor="let label of totalSavings.labels; let i = index" class="slider">
-      <strong>{{label}}</strong>: {{totalSavings.datasets[0].data[i]}} <p-slider [(ngModel)]="totalSavings.datasets[0].data[i]" [min]="0" [max]="10000" [style]="{'width':'200px'}" (onSlideEnd)="handleCapitalChange($event, i)"></p-slider>
-    </div>
-  </div>
 </div>
 <div class="ui-g-12 ui-lg-6">
 </div>

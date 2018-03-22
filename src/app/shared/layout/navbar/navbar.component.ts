@@ -35,8 +35,9 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  showCreateGoalDialog() {
-    this.displayDialog = true;
+  closeCreateGoalDialog($event) {
+    console.log('close dialog');
+    this.displayDialog = false;
   }
 
 

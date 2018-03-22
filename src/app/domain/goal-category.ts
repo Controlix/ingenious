@@ -1,5 +1,5 @@
 export enum GoalCategory {
   HOUSE,
   CAR,
-  TRIP
+  TRAVEL
 }

@@ -1,7 +1,7 @@
 <p-menubar *ngIf="currentUser" [model]="items">
   <div>
-    <button pButton label="Create Goal" icon="fa-plus-circle" (click)="displayDialog = !displayDialog" ></button>
+    <button pButton label="Create Goal" icon="fa-plus-circle" (click)="displayDialog = true"></button>
   </div>
-  <app-goal-create-dialog *ngIf="displayDialog"></app-goal-create-dialog>
+  <app-goal-create-dialog *ngIf="displayDialog" (onCloseDialog)="closeCreateGoalDialog($event)"></app-goal-create-dialog>
 </p-menubar>
 
