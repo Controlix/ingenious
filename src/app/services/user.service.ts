@@ -6,13 +6,15 @@ import {HttpClient} from '@angular/common/http';
 @Injectable()
 export class UserService {
 
-  private user = 'bob';
+  private usersById: { [key: number]: string } = {1: 'bob', 2: 'cathy', 3: 'mike'};
+
+  private user: string;
 
   constructor(private http: HttpClient) {
   }
 
-  setCurrentUser(user: string) {
-    this.user = user;
+  setCurrentUser(userId: number) {
+    this.user = this.usersById[userId];
   }
 
   getCurrentUser(): Observable<any> {
