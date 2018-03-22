@@ -23,7 +23,9 @@ import {BudgetService} from './domain/budget-service';
 import {GoalService} from './services/goal.service';
 import {CalendarModule, DropdownModule} from 'primeng/primeng';
 import {FieldsetModule} from 'primeng/fieldset';
-import {SimulationService} from "./simulation/simulation.service";
+import { LoginComponent } from './login/login.component';
+import {CardModule} from 'primeng/card';
+import {SimulationService} from './simulation/simulation.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {SimulationService} from "./simulation/simulation.service";
     PieChartComponent,
     GoalCreateDialogComponent,
     OverviewComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import {SimulationService} from "./simulation/simulation.service";
     ProfileModule,
     CalendarModule,
     DropdownModule,
+    CardModule,
     AppRoutingModule
   ],
   providers: [UserService, PieChartService, BudgetService, GoalService, SimulationService],

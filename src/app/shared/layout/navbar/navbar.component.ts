@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../domain/user';
 import { UserService } from '../../../services/user.service';
 import { MenuItem } from 'primeng/api';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
   currentUser: User;
   displayDialog = false;
 
-  constructor(private userService: UserService) {}
+  constructor(public userService: UserService, public router: Router) {}
 
   ngOnInit() {
 
@@ -27,7 +28,7 @@ export class NavbarComponent implements OnInit {
           label: this.currentUser.name,
           items: [
             { label: 'Edit Profile', icon: 'fa-cog', routerLink: ['/edit-profile'] },
-            { label: 'Logout',  icon: 'fa-sign-out', routerLink: ['/logout'] }
+            { label: 'Logout',  icon: 'fa-sign-out', routerLink: ['/login'] }
           ],
           expanded: false
         }];
@@ -36,7 +37,6 @@ export class NavbarComponent implements OnInit {
   }
 
   closeCreateGoalDialog($event) {
-    console.log('close dialog');
     this.displayDialog = false;
   }
 

@@ -15,3 +15,7 @@ body {
 p-fieldset a {
   text-decoration: none !important;
 }
+
+.spacer {
+  margin-bottom: 40px;
+}
