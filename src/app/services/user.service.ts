@@ -2,6 +2,7 @@ import 'rxjs/add/observable/of';
 import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {EmptyObservable} from 'rxjs/observable/EmptyObservable';
 
 @Injectable()
 export class UserService {
@@ -19,7 +20,7 @@ export class UserService {
 
   getCurrentUser(): Observable<any> {
     if (this.user == null) {
-      return Observable.of(null);
+      return new EmptyObservable();
     }
 
     return this.http.get('assets/data/' + this.user + '/' + 'profile.json');
