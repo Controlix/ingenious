@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Goal} from '../domain/goal';
 import {Subject} from 'rxjs/Subject';
-import {SimulationResult, SimulationResults} from './simulation';
+import {SimulationResult} from './simulation';
 import * as moment from 'moment';
-import {Income} from '../domain/income';
-import {Expense} from '../domain/expense';
+import {Incomes} from '../domain/income';
+import {Expenses} from '../domain/expense';
 
 @Injectable()
 export class SimulationService {
@@ -19,20 +19,17 @@ export class SimulationService {
     this.goalDefined.next(goal);
   }
 
-  simulate(goal: Goal, incomes: number[], expenses: number[], savings: number[]): SimulationResults {
+  simulate(goal: Goal, incomes: Incomes, expenses: Expenses, savings: number): SimulationResult[] {
+    console.log('goal', goal);
+    console.log('incomes', incomes);
+    console.log('expenses', expenses);
+    console.log('savings', savings);
+
     const targetDate = moment(goal.target, 'DD/MM/YYYY');
     const nbOfMonths = targetDate.diff(new Date(), 'months');
 
-    let totalIncome = 0;
-    let totalExpenses = 0;
-    let savingsSum = 0;
-
-    totalExpenses = expenses.reduce((previous, current) => previous + current);
-    totalIncome = incomes.reduce((previous, current) => previous + current);
-    savingsSum = savings.reduce((previous, current) => previous + current);
-
-    const totalPotentialSaving = ((totalIncome - totalExpenses) * nbOfMonths) + savingsSum;
-    const possibleMonthsNbToGoal = (goal.amount - totalPotentialSaving) / (totalIncome - totalExpenses);
+    const totalPotentialSaving = ((incomes.total - expenses.total) * nbOfMonths) + savings;
+    const possibleMonthsNbToGoal = (goal.amount - totalPotentialSaving) / (incomes.total - expenses.total);
 
     let res: SimulationResult[] = [];
 
@@ -55,7 +52,7 @@ export class SimulationService {
         "month(s), or take a loan.\\nING can provide you very competitive rates compared to the other bank in addition to the quality of its services and advices"));
     }
 
-    return new SimulationResults(res, totalIncome, totalExpenses, savingsSum);
+    return res;
   }
 }
 

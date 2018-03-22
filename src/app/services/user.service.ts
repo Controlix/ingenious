@@ -9,7 +9,7 @@ export class UserService {
 
   private usersById: { [key: number]: string } = {1: 'bob', 2: 'cathy', 3: 'mike'};
 
-  private user: string;
+  private user = 'bob';
 
   constructor(private http: HttpClient) {
   }

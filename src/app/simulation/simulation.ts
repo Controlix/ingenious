@@ -9,18 +9,3 @@ export class SimulationResult {
   }
 }
 
-export class SimulationResults {
-
-  totalIncome: number;
-  totalExpense: number;
-  totalSavings: number;
-
-  results: SimulationResult[] = [];
-
-  constructor(results: SimulationResult[], totalIncome: number, totalExpense: number, totalSavings: number) {
-    this.totalIncome = totalIncome;
-    this.totalExpense = totalExpense;
-    this.totalSavings = totalSavings;
-    this.results = results;
-  }
-}

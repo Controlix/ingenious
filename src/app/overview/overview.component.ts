@@ -5,7 +5,9 @@ import {PieChartSliceInfo} from '../pie-chart/pie-chart-slice-info';
 import {IncomeExpenseBase} from '../domain/income-expense-base';
 import {SimulationService} from '../simulation/simulation.service';
 import {Goal} from '../domain/goal';
-import {SimulationResults} from '../simulation/simulation';
+import {Incomes} from '../domain/income';
+import {Expenses} from '../domain/expense';
+import {SimulationResult} from '../simulation/simulation';
 
 @Component({
   selector: 'overview',
@@ -14,15 +16,20 @@ import {SimulationResults} from '../simulation/simulation';
   providers: []
 })
 export class OverviewComponent implements OnInit {
-  incomes: any;
-  expenses: any;
-  totalSavings: any;
+  incomesPieChart: any;
+  expensesPieChart: any;
+  totalSavingsPieChart: any;
+
   monthlySaving: number;
   monthlyAmountToGoal: number;
   goal: Goal;
   responseTitle: string;
   responseContent: string;
-  simulations: SimulationResults;
+  simulations: SimulationResult[];
+
+  incomes: Incomes;
+  expenses: Expenses;
+  savings: number;
 
   constructor(private budgetService: BudgetService,
               private simulationResponseService: SimulationService,
@@ -31,11 +38,20 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     this.budgetService.getMonthlyIncomes('bob')
-      .subscribe(res => this.incomes = this.toPieChartViewData(res.data));
+      .subscribe(res => {
+        this.incomes = new Incomes(res.data);
+        this.incomesPieChart = this.toPieChartViewData(this.incomes.items);
+      });
     this.budgetService.getMonthlyExpenses('bob')
-      .subscribe(res => this.expenses = this.toPieChartViewData(res.data));
+      .subscribe(res => {
+        this.expenses = new Expenses(res.data);
+        this.expensesPieChart = this.toPieChartViewData(this.expenses.items);
+      });
     this.budgetService.getTotalsavings('bob')
-      .subscribe(res => this.totalSavings = this.toPieChartViewData(res.data));
+      .subscribe(res => {
+        this.savings = res.data === undefined ? 0 : res.data[0].amount ;
+        this.totalSavingsPieChart = this.toPieChartViewData([this.savings]);
+      });
     this.simulationResponseService.goalDefined$.subscribe(goal => {
       this.goal = goal;
       this.simulate();
@@ -52,23 +68,22 @@ export class OverviewComponent implements OnInit {
   }
 
   handleExpenseChange(event, index) {
-    this.expenses.datasets[0].data[index] = event.value;
-    this.expenses = Object.assign({}, this.expenses);
+    this.expensesPieChart.datasets[0].data[index] = event.value;
+    this.expensesPieChart = Object.assign({}, this.expensesPieChart);
   }
 
   handleIncomeChange(event, index) {
-    this.incomes.datasets[0].data[index] = event.value;
-    this.incomes = Object.assign({}, this.incomes);
+    this.incomesPieChart.datasets[0].data[index] = event.value;
+    this.incomesPieChart = Object.assign({}, this.incomesPieChart);
   }
 
   handleCapitalChange(event, index) {
-    this.totalSavings.datasets[0].data[index] = event.value;
-    this.totalSavings = Object.assign({}, this.incomes);
+    this.totalSavingsPieChart.datasets[0].data[index] = event.value;
+    this.totalSavingsPieChart = Object.assign({}, this.incomesPieChart);
   }
 
   simulate() {
-    this.simulations = this.simulationResponseService.simulate(this.goal, this.incomes.datasets[0].data, this.expenses.datasets[0].data,
-      this.totalSavings === undefined ? [] : this.totalSavings.datasets[0].data);
+    this.simulations = this.simulationResponseService.simulate(this.goal, this.incomes, this.expenses, this.savings || 0);
 
     console.log('simulations', this.simulations);
   }
