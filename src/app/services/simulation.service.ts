@@ -5,7 +5,7 @@ import { Goal } from '../domain/goal';
 @Injectable()
 export class SimulationService {
 
-  private goalDefined: Subject<Goal> = new Subject<Goal>();
+ /* private goalDefined: Subject<Goal> = new Subject<Goal>();
 
   goalDefined$ = this.goalDefined.asObservable();
 
@@ -13,5 +13,5 @@ export class SimulationService {
 
   simulateGoal(goal: Goal) {
     this.goalDefined.next(goal);
-  }
+  }*/
 }

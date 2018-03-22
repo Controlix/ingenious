@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Goal} from '../domain/goal';
 import {GoalCategory} from '../domain/goal-category';
-import {SimulationService} from '../services/simulation.service';
+import {SimulationResponseService} from "../domain/simulation-response.service";
 
 @Component({
   selector: 'app-goal-create-dialog',
@@ -18,7 +18,7 @@ export class GoalCreateDialogComponent implements OnInit {
   display = true;
 
 
-  constructor(private simulationService: SimulationService) {}
+  constructor(private simulationResponseService: SimulationResponseService) {}
 
   ngOnInit() {
     this.categories = [
@@ -30,7 +30,7 @@ export class GoalCreateDialogComponent implements OnInit {
 
   onSubmit() {
     this.display = false;
-    this.simulationService.simulateGoal(this.goal);
+    this.simulationResponseService.simulateGoal(this.goal);
   }
 
 

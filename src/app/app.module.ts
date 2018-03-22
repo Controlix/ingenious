@@ -22,7 +22,7 @@ import {PieChartService} from './pie-chart/pie-chart.service';
 import {BudgetService} from './domain/budget-service';
 import {GoalService} from './services/goal.service';
 import {CalendarModule, DropdownModule} from 'primeng/primeng';
-import {SimulationService} from './services/simulation.service';
+import {SimulationResponseService} from "./domain/simulation-response.service";
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import {SimulationService} from './services/simulation.service';
     DropdownModule,
     AppRoutingModule
   ],
-  providers: [UserService, PieChartService, BudgetService, GoalService, SimulationService],
+  providers: [UserService, PieChartService, BudgetService, GoalService, SimulationResponseService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

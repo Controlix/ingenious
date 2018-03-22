@@ -1,7 +1,18 @@
 import {Injectable} from '@angular/core';
+import {Goal} from "./goal";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class SimulationResponseService {
+  private goalDefined: Subject<Goal> = new Subject<Goal>();
+
+  goalDefined$ = this.goalDefined.asObservable();
+
+  constructor() {}
+
+  simulateGoal(goal: Goal) {
+    this.goalDefined.next(goal);
+  }
 
   getSimulationResponse(): any {
     let answers = {

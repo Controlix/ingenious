@@ -1,14 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import { Car } from './domain/car';
-import { CarService} from './services/carservice';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [CarService]
+    providers: []
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
 
     displayDialog: boolean;
 
@@ -24,7 +23,7 @@ export class AppComponent implements OnInit{
     val : number;
   data: any;
 
-    constructor(private carService: CarService) {
+    constructor() {
       this.data = {
         labels: ['A','B','C'],
         datasets: [
@@ -42,17 +41,6 @@ export class AppComponent implements OnInit{
             ]
           }]
       };
-    }
-
-    ngOnInit() {
-        this.carService.getCarsSmall().then(cars => this.cars = cars);
-
-        this.cols = [
-            { field: 'vin', header: 'Vin' },
-            { field: 'year', header: 'Year' },
-            { field: 'brand', header: 'Brand' },
-            { field: 'color', header: 'Color' }
-        ];
     }
 
     showDialogToAdd() {
