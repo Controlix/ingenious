@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Goal} from '../domain/goal';
 import {GoalCategory} from '../domain/goal-category';
-import {SimulationResponseService} from '../domain/simulation-response.service';
+import {SimulationService} from '../simulation/simulation.service';
 
 @Component({
   selector: 'app-goal-create-dialog',
@@ -20,7 +20,7 @@ export class GoalCreateDialogComponent implements OnInit {
   display = true;
 
 
-  constructor(private simulationResponseService: SimulationResponseService) {}
+  constructor(private simulationResponseService: SimulationService) {}
 
   ngOnInit() {
     this.categories = [

@@ -36,10 +36,12 @@
 </div>
 <div class="ui-g-12 ui-lg-6">
 </div>
-<div *ngIf="responseTitle && responseContent" class="ui-g-12 ui-lg-12">
-  <p-fieldset [toggleable]="true">
-    <p-header>{{responseTitle}}</p-header>
-    {{responseContent}}
-  </p-fieldset>
+<div *ngFor="let simulation of simulations">
+  <div class="ui-g-12 ui-lg-12">
+    <p-fieldset [toggleable]="true">
+      <p-header>{{simulation.title}}</p-header>
+      <p class="simulationResult">{{simulation.advise}}</p>
+    </p-fieldset>
+  </div>
 </div>
 

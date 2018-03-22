@@ -26,6 +26,7 @@ import {FieldsetModule} from 'primeng/fieldset';
 import {SimulationResponseService} from "./domain/simulation-response.service";
 import { LoginComponent } from './login/login.component';
 import {CardModule} from 'primeng/card';
+import {SimulationService} from "./simulation/simulation.service";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import {CardModule} from 'primeng/card';
     CardModule,
     AppRoutingModule
   ],
-  providers: [UserService, PieChartService, BudgetService, GoalService, SimulationResponseService],
+  providers: [UserService, PieChartService, BudgetService, GoalService, SimulationService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
