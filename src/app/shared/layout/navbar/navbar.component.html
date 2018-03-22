@@ -1,6 +1,15 @@
 <p-menubar *ngIf="currentUser" [model]="items">
   <div>
-    <button pButton label="Create Goal" icon="fa-plus-circle"></button>
+    <button pButton label="Create Goal" icon="fa-plus-circle" (click)="showCreateGoalDialog()" ></button>
   </div>
 </p-menubar>
+
+<p-dialog header="Create Goal" modal="modal" [responsive]="true" [(visible)]="display">
+  <app-goal-create-dialog-content></app-goal-create-dialog-content>
+  <p-footer>
+    <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancel"></button>
+    <button type="button" pButton icon="fa-check" (click)="display=false" label="Simulate"></button>
+  </p-footer>
+</p-dialog>
+
 

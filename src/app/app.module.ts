@@ -11,7 +11,7 @@ import {AppComponent} from './app.component';
 import {SliderModule} from 'primeng/slider';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
-import { GoalCreateDialogComponent } from './goal-create-dialog/goal-create-dialog.component';
+import { GoalCreateDialogContentComponent } from './goal-create-dialog-content/goal-create-dialog-content.component';
 import {ChartModule} from 'primeng/chart';
 import {PieChartComponent} from './pie-chart/pie-chart.component';
 import {OverviewComponent} from './overview/overview.component';
@@ -21,12 +21,14 @@ import {UserService} from './services/user.service';
 import {MenubarModule} from 'primeng/menubar';
 import {PieChartService} from './pie-chart/pie-chart.service';
 import {BudgetService} from './domain/budget-service';
+import {GoalService} from './services/goal.service';
+import {CalendarModule, DropdownModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
     AppComponent,
     PieChartComponent,
-    GoalCreateDialogComponent,
+    GoalCreateDialogContentComponent,
     OverviewComponent,
     NavbarComponent
   ],
@@ -44,9 +46,11 @@ import {BudgetService} from './domain/budget-service';
     ProfileModule,
     MenubarModule,
     ProfileModule,
+    CalendarModule,
+    DropdownModule,
     AppRoutingModule
   ],
-  providers: [UserService, PieChartService, BudgetService],
+  providers: [UserService, PieChartService, BudgetService, GoalService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -14,7 +14,7 @@ export class Goal {
     this.alias = alias || '';
     this.amount = amount === undefined ? 1 : amount;
     this.target = target === undefined ? this.oneYearFromNow() : target;
-    this.category = category;
+    this.category = category || null;
   }
 
   private oneYearFromNow(): Date {

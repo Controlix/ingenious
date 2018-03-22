@@ -13,7 +13,8 @@ import { MenuItem } from 'primeng/api';
 export class NavbarComponent implements OnInit {
 
   items: MenuItem[] = [];
-  public currentUser: User;
+  currentUser: User;
+  display: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -32,5 +33,9 @@ export class NavbarComponent implements OnInit {
         }];
       }
     );
+  }
+
+  showCreateGoalDialog() {
+    this.display = true;
   }
 }
