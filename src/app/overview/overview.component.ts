@@ -50,7 +50,7 @@ export class OverviewComponent implements OnInit {
     this.budgetService.getTotalsavings('bob')
       .subscribe(res => {
         this.savings = res.data === undefined ? 0 : res.data[0].amount ;
-        this.totalSavingsPieChart = this.toPieChartViewData([this.savings]);
+        this.totalSavingsPieChart = this.toPieChartViewData(res.data === undefined ? {} : res.data);
       });
     this.simulationResponseService.goalDefined$.subscribe(goal => {
       this.goal = goal;
@@ -84,8 +84,6 @@ export class OverviewComponent implements OnInit {
 
   simulate() {
     this.simulations = this.simulationResponseService.simulate(this.goal, this.incomes, this.expenses, this.savings || 0);
-
-    console.log('simulations', this.simulations);
   }
 }
 
