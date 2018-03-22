@@ -52,7 +52,7 @@ export class SimulationService {
       res = res.concat(new SimulationResult('Your actual situation can\'t allow to to achieve your goal in the date wanted, you can apply for a loan from ING or another bank', 'Your actual situation can\'t allow to to achieve your goal in the date wanted, you can apply for a loan from ING or another bank'));
       res = res.concat(new SimulationResult('The actual configuration of the goal and your financial situation doesn\'t allow you to achieve your goal in the date wanted please extend the date to make it possible',
         'The actual configuration of the goal and your financial situation doesn\'t allow you to achieve your goal in the date wanted, you can postpone the date by ' + nbMonths +
-        "month(s), or take a loan.\\nING can provide you very competitive rates compared to the other bank in addition to the quality of its services and advices"));
+        "month(s), or take a loan.\nING can provide you very competitive rates compared to the other bank in addition to the quality of its services and advices"));
     }
 
     return res;
