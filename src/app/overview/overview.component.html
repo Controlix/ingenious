@@ -19,7 +19,10 @@
                 (onSlideEnd)="handleIncomeChange($event, i)"></p-slider>
     </div>
   </div>
-  <div *ngIf="incomes">{{incomes.total}}</div>
+  <div *ngIf="incomes">
+    <br/>
+    <strong>Total: {{incomes.total}}</strong>
+  </div>
   <div class="ui-g-12 ui-lg-12 capital-container">
     <div *ngIf="totalSavingsPieChart" class="card">
       <h1>Capital</h1>
@@ -40,7 +43,10 @@
       <p-slider [(ngModel)]="expensesPieChart.datasets[0].data[i]" [min]="0" [max]="10000" [style]="{'width':'200px'}"
                 (onSlideEnd)="handleExpenseChange($event, i)"></p-slider>
     </div>
-    <div *ngIf="expenses">{{expenses.total}}</div>
+    <div *ngIf="expenses">
+      <br/>
+      <strong>Total: {{expenses.total}}</strong>
+    </div>
   </div>
 </div>
 <div class="ui-g-12 ui-lg-6">
