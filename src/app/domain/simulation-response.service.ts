@@ -14,7 +14,8 @@ export class SimulationResponseService {
     this.goalDefined.next(goal);
   }
 
-  getSimulationResponse(): any {
+  getSimulationResponse(nbMonths): any {
+    let nbMonths : number = nbMonths;
     let answers = {
       negative : {
         impossible : {
@@ -27,8 +28,9 @@ export class SimulationResponseService {
             Content : "Your actual situation can't allow to to achieve your goal in the date wanted, you can apply for a loan from ING or another bank"
           },
           extendPeriod : {
-            title : "The actual configuration of the goal and your financial situation doesn't allow you to achieve your goal in the date wanted please extend the date to make it possible",
-            content :"The actual configuration of the goal and your financial situation doesn't allow you to achieve your goal in the date wanted please extend the date to make it possible"
+            title : "The actual configuration of the goal and your financial situation doesn't allow you to achieve your goal in the date wanted",
+            content :"The actual configuration of the goal and your financial situation doesn't allow you to achieve your goal in the date wanted, you can postpone the date by " + nbMonths +
+            " month(s), or take a loan. \n ING can provide you very competitive rates compared to the other bank in addition to the quality of its services and advices"
           }
         }
       },
