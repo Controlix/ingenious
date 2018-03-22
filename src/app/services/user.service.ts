@@ -19,11 +19,7 @@ export class UserService {
   }
 
   getCurrentUser(): Observable<any> {
-    if (this.user == null) {
-      return new EmptyObservable();
-    }
-
-    return this.http.get('assets/data/' + this.user + '/' + 'profile.json');
+    return this.http.get('assets/data/bob/profile.json');
   }
 
 }
